@@ -48,7 +48,7 @@ void PrintMatrixZigZag(int ** matrix, int rows, int columns)
 	while (tR <= endR)
 	{
 		PrintLevel(matrix, tR, tC, dR, dC, fromUp);
-		tR = tC == endC ? tR + 1 : tR;
+		tR = tC == endC ? tR + 1 : tR;//ÊÇ+1£¬²»ÊÇ++
 		tC = tC == endC ? tC : tC + 1;
 		dC = dR == endR ? dC + 1 : dC;
 		dR = dR == endR ? dR : dR + 1;
