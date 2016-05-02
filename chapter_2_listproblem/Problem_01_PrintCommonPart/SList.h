@@ -20,7 +20,7 @@ void PushFront(SListNode*& pHead, DataType x);
 void PopFront(SListNode*& pHead);
 SListNode* Find(SListNode* pHead, DataType x);
 void Insert(SListNode* pos, DataType x);
-void Erase(SListNode* pos);
+void Erase(SListNode*& pHead,SListNode* pos);
 void DestoryList(SListNode*& pHead);
 
 
@@ -154,14 +154,32 @@ void Insert(SListNode* pos, DataType x)
 
 
 
-void Erase(SListNode* pos)
+void Erase(SListNode*& pHead, SListNode* pos)
 {
+	assert(pHead);
 	assert(pos);
-	assert(pos->_next);
-	SListNode* del = pos->_next;
-	pos->_data = del->_data;
-	pos->_next = del->_next;
-	free(del);
+	if (pHead == pos)
+	{
+		SListNode* del = pos;
+		pHead = pHead->_next;
+		free(pos);
+	}
+	else
+	{
+		SListNode* cur = pHead;
+		SListNode* prev = NULL;
+		while (cur != NULL)
+		{
+			prev = cur;
+			cur = cur->_next;
+			if (cur == pos)
+			{
+				prev->_next = cur->_next;
+				free(cur);
+				break;
+			}
+		}
+	}
 }
 
 
